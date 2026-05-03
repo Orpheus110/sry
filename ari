@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Card 💙</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #c2e9fb, #a1c4fd);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    .card {
+        width: 320px;
+        height: 420px;
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+        transition: transform 0.6s;
+    }
+
+    h1 {
+        color: #4a6cf7;
+    }
+
+    p {
+        color: #555;
+    }
+
+    .btn {
+        margin-top: 15px;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: 0.3s;
+        position: relative;
+    }
+
+    .yes {
+        background: #4a6cf7;
+        color: white;
+    }
+
+    .yes:hover {
+        background: #3a56d4;
+    }
+
+    .no {
+        background: #ff6b6b;
+        color: white;
+        position: absolute;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .final {
+        animation: pop 0.5s ease;
+    }
+
+    @keyframes pop {
+        0% { transform: scale(0.5); opacity: 0; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+</style>
+</head>
+<body>
+
+<div class="card" id="card">
+    <h1>Hey... 💙</h1>
+    <p id="text">I messed up a bit... 😅</p>
+
+    <button class="btn yes" id="yesBtn">okii i forgive u kiwi</button>
+    <button class="btn no" id="noBtn">no?</button>
+</div>
+
+<script>
+let noClicks = 0;
+const noBtn = document.getElementById('noBtn');
+const yesBtn = document.getElementById('yesBtn');
+const text = document.getElementById('text');
+
+function moveNoButton() {
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    noBtn.style.left = x + 'px';
+    noBtn.style.top = y + 'px';
+}
+
+noBtn.addEventListener('click', () => {
+    noClicks++;
+
+    if (noClicks < 4) {
+        moveNoButton();
+        text.innerHTML = "arey don't do this 😭";
+    } else {
+        noBtn.style.display = 'none';
+        text.innerHTML = "okay fine... only one choice now 😌";
+    }
+});
+
+yesBtn.addEventListener('click', () => {
+    document.getElementById('card').innerHTML = `
+        <h1 class="final">Forgive me? 🥺</h1>
+        <p class="final">You're really important to me... I didn't mean to hurt you 💙</p>
+        <p class="final">Can we be good again? 🌸</p>
+    `;
+});
+
+// initial random position for no button
+moveNoButton();
+</script>
+
+</body>
+</html>
